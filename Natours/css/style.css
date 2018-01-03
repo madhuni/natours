@@ -6,3 +6,201 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+/* Resetting the browser properties (without Normalize.css) */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Font releated resets will always go in the 'body' */
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7; /* Means line-height is the 1.7 times of pre-defined line-height */
+  color: #777;
+  padding: 30px;
+}
+
+/* Styling the header for the web-page */
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(to right bottom,
+  rgba(126, 213, 111, 0.7),
+  hsla(160, 64%, 43%, 0.7)),
+    url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+.logo-container {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.logo {
+  height: 35px;
+}
+
+.text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden; /* Fix for the shaking of object when the animation ends */
+  margin-bottom: 60px;
+}
+
+.heading-primary__main {
+  display: block;
+  font-size: 60px;
+  font-weight: 400;
+  /* 
+  In order to apply letter-spacing with text-align as center
+  we will need to give the same amount of 'text-indent' as 'letter-spacing'
+  */
+  letter-spacing: 35px;
+  text-align: center;
+  text-indent: 35px;
+  /* For setting animation we need to define 2 basic properties */
+  animation-name: moveInLeft;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+}
+
+.heading-primary__sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 14px;
+  text-align: center;
+  text-indent: 14px;
+  animation: moveInRight 1.5s ease-out;
+}
+
+/* Defining animations for the heading */
+
+/* For primary heading */
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+/* For sub heading */
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+/* Button */
+
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+  backface-visibility: hidden;
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.btn--white {
+  background-color: #fff;
+  color: #777;
+}
+
+.btn--animated {
+  animation: moveInButton .6s ease-out .75s;
+  /*
+    This particular property will apply the values of 0% when the animation starts
+    So the btn will practically be invisible for the delay period of .75s and then will
+    appear from it's 0% styles
+  */
+  animation-fill-mode: backwards;
+}
+
+/* Adding moving animation for the button when the page reloads */
+@keyframes moveInButton {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+/* Adding infinite animation on btn-hover */
+
+/* This should go behind the original button */
+.btn::after {
+  content: "";
+  width: 100%; /* 100% of the btn-element */
+  height: 100%; /* 100% of the btn-element */
+  border-radius: 100px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+}
+
+.btn--white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scale(1.2) scale(1.4 ); /* corresponds to X and Y directions */
+  opacity: 0;
+}
