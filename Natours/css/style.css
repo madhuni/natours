@@ -9,20 +9,39 @@ Dark green: #28b485
 
 /* Resetting the browser properties (without Normalize.css) */
 
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit; /* Inheriting the 'box-sizing' property where it is defined (in body) */
+}
+
+/* Converting all the 'px' unit to 'rem' which is going to be the 'root font-size' */
+
+/* Declaring the root font-size first */
+html {
+  /* 
+    Here we are setting the default value in 'px' and it will remain the same if user changes it.
+    So we are going to change the way to declare the root font size based on the default
+    User-agent font-size which is '16px'.
+    The root font-size will still be the 10px but in '%' i.e. 10(which we want)/16(default)=62.5%
+  */
+  /* font-size: 10px; */
+  font-size: 62.5%;
 }
 
 body {
   /* Font releated resets will always go in the 'body' */
   font-family: 'Lato', sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1.6rem;
   line-height: 1.7; /* Means line-height is the 1.7 times of pre-defined line-height */
   color: #777;
-  padding: 30px;
+  padding: 3rem;
+
+  /* Defining the box-sizing in the body element and then inheritig this is '*' selector */
+  box-sizing: border-box;
 }
 
 /* Styling the header for the web-page */
@@ -30,27 +49,35 @@ body {
 .header {
   height: 95vh;
   background-image: linear-gradient(to right bottom,
+  rgba(0, 0, 0, 0.9),
+  rgba(255, 0, 0, 0.85),
+  rgba(0, 0, 0, 0.9),
+  rgba(0, 0, 0, 0.9)),
+    url(../img/hero.jpg);
+  /* background-image: linear-gradient(to right bottom,
   rgba(126, 213, 111, 0.7),
   hsla(160, 64%, 43%, 0.7)),
-    url(../img/hero.jpg);
+    url(../img/hero.jpg); */
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
   position: relative;
+  /* New technique to clip the path of the elements based on the coordinates */
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  -webkit-clip-path : polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 }
 
-.logo-container {
+.header__logo-container {
   position: absolute;
-  top: 40px;
-  left: 40px;
+  top: 4rem;
+  left: 4rem;
 }
 
-.logo {
-  height: 35px;
+.header__logo {
+  height: 3.5rem;
 }
 
-.text-box {
+.header__text-box {
   position: absolute;
   top: 40%;
   left: 50%;
@@ -62,33 +89,33 @@ body {
   color: #fff;
   text-transform: uppercase;
   backface-visibility: hidden; /* Fix for the shaking of object when the animation ends */
-  margin-bottom: 60px;
+  margin-bottom: 6rem;
 }
 
-.heading-primary__main {
+.heading-primary--main {
   display: block;
-  font-size: 60px;
+  font-size: 6rem;
   font-weight: 400;
   /* 
   In order to apply letter-spacing with text-align as center
   we will need to give the same amount of 'text-indent' as 'letter-spacing'
   */
-  letter-spacing: 35px;
+  letter-spacing: 3.5rem;
   text-align: center;
-  text-indent: 35px;
+  text-indent: 3.5rem;
   /* For setting animation we need to define 2 basic properties */
   animation-name: moveInLeft;
   animation-duration: 1.5s;
   animation-timing-function: ease-out;
 }
 
-.heading-primary__sub {
+.heading-primary--sub {
   display: block;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: 14px;
+  letter-spacing: 1.4rem;
   text-align: center;
-  text-indent: 14px;
+  text-indent: 1.4rem;
   animation: moveInRight 1.5s ease-out;
 }
 
@@ -98,11 +125,11 @@ body {
 @keyframes moveInLeft {
   0% {
     opacity: 0;
-    transform: translateX(-100px);
+    transform: translateX(-10rem);
   }
 
   80% {
-    transform: translateX(10px);
+    transform: translateX(1rem);
   }
 
   100% {
@@ -115,11 +142,11 @@ body {
 @keyframes moveInRight {
   0% {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(10rem);
   }
 
   80% {
-    transform: translateX(-10px);
+    transform: translateX(-1rem);
   }
 
   100% {
@@ -134,22 +161,22 @@ body {
 .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 15px 40px;
+  padding: 1.5rem 4rem;
   display: inline-block;
-  border-radius: 100px;
+  border-radius: 10rem;
   transition: all .2s;
   backface-visibility: hidden;
   position: relative;
 }
 
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+  transform: translateY(-.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
 }
 
 .btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  transform: translateY(-.1rem);
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
 }
 
 .btn--white {
@@ -171,7 +198,7 @@ body {
 @keyframes moveInButton {
   0% {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(5rem);
   }
 
   100% {
@@ -187,7 +214,7 @@ body {
   content: "";
   width: 100%; /* 100% of the btn-element */
   height: 100%; /* 100% of the btn-element */
-  border-radius: 100px;
+  border-radius: 10rem;
   display: inline-block;
   position: absolute;
   top: 0;
