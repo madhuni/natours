@@ -1,0 +1,65 @@
+/* Button */
+.btn {
+  
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .2s;
+    backface-visibility: hidden;
+    position: relative;
+  }
+  
+  &:hover {
+    transform: translateY(-.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, .2);
+
+    &::after {
+      transform: scale(1.2) scale(1.4 ); /* corresponds to X and Y directions */
+      opacity: 0;
+    }
+  }
+  
+  &:active {
+    transform: translateY(-.1rem);
+    box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+  }
+  
+  &--white {
+    background-color: $color-white;
+    color: $color-text-primary;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+  
+  &--animated {
+    animation: moveInButton .6s ease-out .75s;
+    /*
+      This particular property will apply the values of 0% when the animation starts
+      So the btn will practically be invisible for the delay period of .75s and then will
+      appear from it's 0% styles
+    */
+    animation-fill-mode: backwards;
+  }
+
+  /* Adding infinite animation on btn-hover */
+  
+  /* This should go behind the original button */
+  &::after {
+    content: "";
+    width: 100%; /* 100% of the btn-element */
+    height: 100%; /* 100% of the btn-element */
+    border-radius: 10rem;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+  }
+}

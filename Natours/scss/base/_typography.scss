@@ -1,0 +1,43 @@
+body {
+  /* Font releated resets will always go in the 'body' */
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7; /* Means line-height is the 1.7 times of pre-defined line-height */
+  color: #777;
+  padding: 3rem;
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  backface-visibility: hidden; /* Fix for the shaking of object when the animation ends */
+  margin-bottom: 6rem;
+
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    /* 
+    In order to apply letter-spacing with text-align as center
+    we will need to give the same amount of 'text-indent' as 'letter-spacing'
+    */
+    letter-spacing: 3.5rem;
+    text-align: center;
+    text-indent: 3.5rem;
+    /* For setting animation we need to define 2 basic properties */
+    animation-name: moveInLeft;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+  }
+  
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.4rem;
+    text-align: center;
+    text-indent: 1.4rem;
+    animation: moveInRight 1.5s ease-out;
+  }
+}

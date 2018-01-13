@@ -1,0 +1,28 @@
+/* Resetting the browser properties (without Normalize.css) */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; /* Inheriting the 'box-sizing' property where it is defined (in body) */
+}
+
+/* Converting all the 'px' unit to 'rem' which is going to be the 'root font-size' */
+
+/* Declaring the root font-size first */
+html {
+  /* 
+    Here we are setting the default value in 'px' and it will remain the same if user changes it.
+    So we are going to change the way to declare the root font size based on the default
+    User-agent font-size which is '16px'.
+    The root font-size will still be the 10px but in '%' i.e. 10(which we want)/16(default)=62.5%
+    So this % defines what 1rem is and is a global style
+  */
+  /* font-size: 10px; */
+  font-size: 62.5%;
+}
+
+body {
+  /* Defining the box-sizing in the body element and then inheritig this is '*' selector */
+  box-sizing: border-box;
+}
