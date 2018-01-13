@@ -1,24 +1,51 @@
 /*
 COLORS:
-
 Light green: #7ed56f
 Medium green: #55c57a
 Dark green: #28b485
-
 */
+/* Defining animations for the heading */
+/* For primary heading */
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+/* For sub heading */
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+/* Adding moving animation for the button when the page reloads */
+@keyframes moveInButton {
+  0% {
+    opacity: 0;
+    transform: translateY(5rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
 
 /* Resetting the browser properties (without Normalize.css) */
-
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: inherit; /* Inheriting the 'box-sizing' property where it is defined (in body) */
-}
+  box-sizing: inherit;
+  /* Inheriting the 'box-sizing' property where it is defined (in body) */ }
 
 /* Converting all the 'px' unit to 'rem' which is going to be the 'root font-size' */
-
 /* Declaring the root font-size first */
 html {
   /* 
@@ -26,208 +53,125 @@ html {
     So we are going to change the way to declare the root font size based on the default
     User-agent font-size which is '16px'.
     The root font-size will still be the 10px but in '%' i.e. 10(which we want)/16(default)=62.5%
+    So this % defines what 1rem is and is a global style
   */
   /* font-size: 10px; */
-  font-size: 62.5%;
-}
+  font-size: 62.5%; }
+
+body {
+  /* Defining the box-sizing in the body element and then inheritig this is '*' selector */
+  box-sizing: border-box; }
 
 body {
   /* Font releated resets will always go in the 'body' */
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   font-size: 1.6rem;
-  line-height: 1.7; /* Means line-height is the 1.7 times of pre-defined line-height */
+  line-height: 1.7;
+  /* Means line-height is the 1.7 times of pre-defined line-height */
   color: #777;
-  padding: 3rem;
+  padding: 3rem; }
 
-  /* Defining the box-sizing in the body element and then inheritig this is '*' selector */
-  box-sizing: border-box;
-}
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  /* Fix for the shaking of object when the animation ends */
+  margin-bottom: 6rem; }
+  .heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    /* 
+    In order to apply letter-spacing with text-align as center
+    we will need to give the same amount of 'text-indent' as 'letter-spacing'
+    */
+    letter-spacing: 3.5rem;
+    text-align: center;
+    text-indent: 3.5rem;
+    /* For setting animation we need to define 2 basic properties */
+    animation-name: moveInLeft;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out; }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.4rem;
+    text-align: center;
+    text-indent: 1.4rem;
+    animation: moveInRight 1.5s ease-out; }
+
+/* Button */
+.btn {
+  /* Adding infinite animation on btn-hover */
+  /* This should go behind the original button */ }
+  .btn:link, .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .2s;
+    backface-visibility: hidden;
+    position: relative; }
+  .btn:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+    .btn:hover::after {
+      transform: scale(1.2) scale(1.4);
+      /* corresponds to X and Y directions */
+      opacity: 0; }
+  .btn:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+  .btn--white {
+    background-color: #fff;
+    color: #777; }
+    .btn--white::after {
+      background-color: #fff; }
+  .btn--animated {
+    animation: moveInButton .6s ease-out .75s;
+    /*
+      This particular property will apply the values of 0% when the animation starts
+      So the btn will practically be invisible for the delay period of .75s and then will
+      appear from it's 0% styles
+    */
+    animation-fill-mode: backwards; }
+  .btn::after {
+    content: "";
+    width: 100%;
+    /* 100% of the btn-element */
+    height: 100%;
+    /* 100% of the btn-element */
+    border-radius: 10rem;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s; }
 
 /* Styling the header for the web-page */
-
 .header {
   height: 95vh;
-  background-image: linear-gradient(to right bottom,
-  rgba(0, 0, 0, 0.9),
-  rgba(255, 0, 0, 0.85),
-  rgba(0, 0, 0, 0.9),
-  rgba(0, 0, 0, 0.9)),
-    url(../img/hero.jpg);
-  /* background-image: linear-gradient(to right bottom,
-  rgba(126, 213, 111, 0.7),
-  hsla(160, 64%, 43%, 0.7)),
-    url(../img/hero.jpg); */
+  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.9), rgba(255, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url(../img/hero.jpg);
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
   position: relative;
   /* New technique to clip the path of the elements based on the coordinates */
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  -webkit-clip-path : polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-}
-
-.header__logo-container {
-  position: absolute;
-  top: 4rem;
-  left: 4rem;
-}
-
-.header__logo {
-  height: 3.5rem;
-}
-
-.header__text-box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.heading-primary {
-  color: #fff;
-  text-transform: uppercase;
-  backface-visibility: hidden; /* Fix for the shaking of object when the animation ends */
-  margin-bottom: 6rem;
-}
-
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  /* 
-  In order to apply letter-spacing with text-align as center
-  we will need to give the same amount of 'text-indent' as 'letter-spacing'
-  */
-  letter-spacing: 3.5rem;
-  text-align: center;
-  text-indent: 3.5rem;
-  /* For setting animation we need to define 2 basic properties */
-  animation-name: moveInLeft;
-  animation-duration: 1.5s;
-  animation-timing-function: ease-out;
-}
-
-.heading-primary--sub {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.4rem;
-  text-align: center;
-  text-indent: 1.4rem;
-  animation: moveInRight 1.5s ease-out;
-}
-
-/* Defining animations for the heading */
-
-/* For primary heading */
-@keyframes moveInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-10rem);
-  }
-
-  80% {
-    transform: translateX(1rem);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
-
-/* For sub heading */
-@keyframes moveInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(10rem);
-  }
-
-  80% {
-    transform: translateX(-1rem);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
-
-/* Button */
-
-.btn:link,
-.btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block;
-  border-radius: 10rem;
-  transition: all .2s;
-  backface-visibility: hidden;
-  position: relative;
-}
-
-.btn:hover {
-  transform: translateY(-.3rem);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
-}
-
-.btn:active {
-  transform: translateY(-.1rem);
-  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
-}
-
-.btn--white {
-  background-color: #fff;
-  color: #777;
-}
-
-.btn--animated {
-  animation: moveInButton .6s ease-out .75s;
-  /*
-    This particular property will apply the values of 0% when the animation starts
-    So the btn will practically be invisible for the delay period of .75s and then will
-    appear from it's 0% styles
-  */
-  animation-fill-mode: backwards;
-}
-
-/* Adding moving animation for the button when the page reloads */
-@keyframes moveInButton {
-  0% {
-    opacity: 0;
-    transform: translateY(5rem);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
-
-/* Adding infinite animation on btn-hover */
-
-/* This should go behind the original button */
-.btn::after {
-  content: "";
-  width: 100%; /* 100% of the btn-element */
-  height: 100%; /* 100% of the btn-element */
-  border-radius: 10rem;
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  transition: all .4s;
-}
-
-.btn--white::after {
-  background-color: #fff;
-}
-
-.btn:hover::after {
-  transform: scale(1.2) scale(1.4 ); /* corresponds to X and Y directions */
-  opacity: 0;
-}
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
+  .header__logo-container {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem; }
+  .header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
