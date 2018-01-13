@@ -1,0 +1,22 @@
+** Basics of CSS architecture **
+
+We will use 7 in 1 pattern to architecture our CSS files. Those folders will be:
+
+1) Base -> Will contain the styles for the base element such as body, html and all resets.
+
+2) Abstract -> all the code which is not going to give any CSS output, we are going
+to put in this folder such as variables, mixins etc.
+
+3) Components -> It will contain the file corresponds to each component on the webpage.
+Components are the reusable building blocks which can be used again and again independently.
+
+4) Layout -> For each piece of the Global layout of the entire project. Such as
+'Global Footer', 'Header' etc.
+
+5) Pages -> If we are having a very specific styles for a specific 
+page i.e. for home page, we can create a new file for that specific
+page and all those pages will go in 'Pages' folder.
+
+6) Themes -> In case we are using the web app for different Themes
+
+7) Vendors -> Here we can put the 3rd party css files 
