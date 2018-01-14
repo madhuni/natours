@@ -1,0 +1,69 @@
+/* Styles for the user stories */
+
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba($color-black, .1);
+  background-color: rgba($color-white, .8);
+  padding: 6rem 9rem 6rem 9rem;
+  font-size: $default-font-size;
+  transform: skewX(-12deg);
+
+  & > * {
+    transform: skewX(12deg);
+  }
+
+  &__shape {
+    position: relative;
+    width: 15rem;
+    height: 15rem;
+    background-color: orange;
+    float: left;
+    /* New shape outside property to give shapes to elements 
+    This property requires the 'float', 'height' and 'width' 
+    of the element in order to work */
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+
+    clip-path: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+
+    /* When we need to give space around a float element,
+    the best pracitce is not to give any padding or margin
+    instead 'translate' that with the required value */
+    transform: translateX(-3rem) skewX(12deg);
+    overflow: hidden;
+  }
+
+  &__image {
+    height: 100%;
+    transform: translateX(-4rem) scale(1.4);
+    transition: all .5s;
+    filter: blur(0) brightness(100%);
+    backface-visibility: hidden;
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    opacity: 0;
+    color: $color-white;
+    text-transform: uppercase;
+    text-align: center;
+    transition: all .5s;
+    backface-visibility: hidden;
+  }
+
+  &:hover &__caption {
+    opacity: 1; 
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__image {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
+    -webkit-filter: blur(3px) brightness(80%);
+  }
+}
