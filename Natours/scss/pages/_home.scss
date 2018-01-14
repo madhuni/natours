@@ -3,3 +3,25 @@
   margin-top: -20vh;
   background-color: $color-light-grey;
 }
+
+.section-features {
+  padding: 20rem 0;
+  background-image: linear-gradient(to right bottom, 
+    rgba($color-primary-light, .8),
+    rgba($color-primary-dark, .8)),
+    url(../img/nat-4.jpg);
+  background-size: cover;
+  background-position: center;
+
+  /* Scewing the entire section instead of using 'clip-path' */
+  transform: skewY(-7deg);
+
+  /* Giving margin top of negative value to cover the remaining white space */
+  margin-top: -10rem;
+
+  /* In order to unskew the child elements, we will skew the 
+  direct-child in same amount but in reverse direction */
+  & > * {
+    transform: skewY(7deg);
+  }
+}
