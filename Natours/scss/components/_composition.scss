@@ -1,0 +1,40 @@
+/* Styles for images compostion goes here */
+.composition {
+  position: relative;
+
+  &__photo {
+    width: 55%;
+    position: absolute;
+    z-index: 10;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .5);
+    border-radius: 2px;
+    outline-offset: 1.5rem;
+    transition: all .2s;
+
+    &--p1 {
+      top: -2rem;
+      left: 0;
+    }
+
+    &--p2 {
+      top: 2rem;
+      right: 0;
+    }
+
+    &--p3 {
+      top: 10rem;
+      left: 12rem;
+    }
+
+    &:hover {
+      transform: scale(1.1) translateY(-.5rem);
+      z-index: 11;
+      box-shadow: 0 2.5rem 4rem rgba($color-black, .5);
+      outline: 1.5rem solid $color-primary;
+    }
+  }
+
+  &:hover &__photo:not(:hover) {
+    transform: scale(.9);
+  }
+}

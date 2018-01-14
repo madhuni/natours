@@ -2,7 +2,7 @@ body {
   /* Font releated resets will always go in the 'body' */
   font-family: 'Lato', sans-serif;
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: $default-font-size;
   line-height: 1.7; /* Means line-height is the 1.7 times of pre-defined line-height */
   color: #777;
   padding: 3rem;
@@ -39,5 +39,36 @@ body {
     text-align: center;
     text-indent: 1.4rem;
     animation: moveInRight 1.5s ease-out;
+  }
+}
+
+.heading-secondary {
+  display: inline-block;
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .2rem;
+  /* To clip the background image according to the text */
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+  color: transparent;
+
+  &:hover {
+    text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
+  }
+}
+
+.heading-tertiary {
+  font-size: $default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: $default-font-size;
+
+  &:not(:last-child) {
+    margin-bottom: 3rem;
   }
 }
