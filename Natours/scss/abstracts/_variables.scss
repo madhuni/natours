@@ -6,12 +6,20 @@ Dark green: #28b485
 */
 
 $color-primary: #55c57a;
-$color-primary-dark: #7ed56f;
-$color-primary-light: #28b485;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
 
 $color-white: #fff;
 $color-black: #000;
 $color-text-primary: #777;
+
+/* backgroud color for section */
+
+$color-light-grey: #f7f7f7;
+
+/* Fonts */
+
+$default-font-size: 1.6rem;
 
 /* Variables for Grid System for the project */
 $grid-width: 114rem;

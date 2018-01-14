@@ -2,7 +2,8 @@
 .row {
   max-width: $grid-width;
   margin: 0 auto;
-  background: rgb(211, 211, 211);
+  /* Removing the backgroudn color from each row */
+  // background: rgb(211, 211, 211);
   @include clearfix;
 
   /* Setting the margin-bottom to every row except the last row element */
@@ -13,9 +14,10 @@
   /* Using the attribute selector to assign styles to each column */
   [class^="col-"] {
     float: left;
-    background: orange;
-    color: $color-black;
-    text-align: center;
+    /* Commenting the properties for testing purposes */
+    // background: orange;
+    // color: $color-black;
+    // text-align: center;
 
     &:not(:last-child) {
       margin-right: $gutter-horizontal;
