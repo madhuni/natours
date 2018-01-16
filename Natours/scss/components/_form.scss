@@ -1,0 +1,66 @@
+/* Styles for the 'form' component */
+.form {
+
+  &__group {
+    
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__input {
+    /* Input fields doesn't inherit the font-family by default */
+    font-family: inherit;
+    color: inherit;
+    font-size: 1.5rem;
+    width: 90%;
+    display: block;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    border-radius: 3px;
+    padding: 1rem 2rem;
+    background-color: rgba($color-white, .5);
+    transition: all .3s;
+
+    &:focus {
+      outline: none;
+      -moz-outline: none;
+      -webkit-outline: none;  
+      box-shadow: 0rem 1rem 2rem rgba($color-black, .15);
+      border-bottom: 3px solid $color-primary;
+    }
+
+    /* Using HTML5 native 'validation' */
+    &:focus:invalid {
+      border-bottom: 3px solid orangered;
+    }
+
+    /* Sudo selector for the placeholder */
+    &::-webkit-input-placeholder  {
+      color: $color-text-primary;
+    }
+
+  }
+
+  &__label {
+    display: block;
+    font-family: inherit;
+    color: inherit;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: .7rem 0 0 2rem;
+    transition: all .3s;
+  }
+
+  /*
+    '+' selector is used to select the adjacent sibling
+    '~' selector is used to select the sibling with more layers
+  */
+
+  &__input:placeholder-shown + &__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem);
+  }
+
+}
