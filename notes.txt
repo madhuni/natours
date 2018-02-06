@@ -19,4 +19,29 @@ page and all those pages will go in 'Pages' folder.
 
 6) Themes -> In case we are using the web app for different Themes
 
-7) Vendors -> Here we can put the 3rd party css files 
+7) Vendors -> Here we can put the 3rd party css files
+
+-----------------------------------------------------------
+
+** Basics Responsive Designs Principles **
+
+1) Fluid Grids and Layout: To allow content to easily adapt the
+current viewport width used to browse the website. Uses % rather
+than px for all layout releated lengths.
+
+2) Flexible/Responsive images: Images behave differently than text
+content, and so we need to ensure that they also adapt nicely to
+the current viewport. Use % for the dimensions for the images.
+
+3) Media Queries
+
+
+Layout Types:
+1) Float Layouts
+2) Flexbox
+3) CSS Grids (For overall layout of the page)
+
+-------------------------------------------------------------
+
+Utility classes are very simple classes in CSS which are having only 1 simple goal.
+like: 'u-center-text' : { text-align: center;}
